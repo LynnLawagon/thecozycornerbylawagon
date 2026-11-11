@@ -1,33 +1,117 @@
 @import "tailwindcss";
+
+/* ---------- Design tokens: elegant + vibrant ---------- */
 :root {
-  --background: #F4EAD6;
-  --foreground: #2B1F12;
-  --accent-1: #B85C38;
+  --cream: #fff8ee;
+  --cream-deep: #fdeedb;
+  --ink: #1f1635;
+  --ink-soft: #4a4063;
+  --plum: #2d1b4e;
+  --coral: #ef476f;
+  --gold: #ffb627;
+  --teal: #0fa38a;
+  --violet: #6c4ab6;
+  --sky: #2f9bd6;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-cream: var(--cream);
+  --color-cream-deep: var(--cream-deep);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-plum: var(--plum);
+  --color-coral: var(--coral);
+  --color-gold: var(--gold);
+  --color-teal: var(--teal);
+  --color-violet: var(--violet);
+  --color-sky: var(--sky);
+  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-playfair), Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-:root {
-  --background: #F4EAD6;
-  --foreground: #2B1F12;
-  --accent-1: #B85C38;
+html {
+  scroll-behavior: smooth;
 }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-playfair), Georgia, serif;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 3px solid var(--violet);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---------- Reusable pieces ---------- */
+.gradient-text {
+  background: linear-gradient(95deg, var(--coral), var(--gold) 55%, var(--teal));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-bg {
+  background:
+    radial-gradient(60rem 30rem at 85% -10%, rgba(239, 71, 111, 0.55), transparent 60%),
+    radial-gradient(50rem 28rem at 0% 110%, rgba(15, 163, 138, 0.45), transparent 60%),
+    radial-gradient(40rem 24rem at 50% 40%, rgba(108, 74, 182, 0.55), transparent 65%),
+    linear-gradient(160deg, #1f1635 0%, #2d1b4e 100%);
+}
+
+.card-lift {
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
+}
+.card-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 40px -16px rgba(45, 27, 78, 0.45);
+}
+
+.fade-up {
+  animation: fadeUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .fade-up {
+    animation: none;
+  }
+  .card-lift,
+  .card-lift:hover {
+    transition: none;
+    transform: none;
+  }
 }
 
 .text-justify {
   text-align: justify;
   text-justify: inter-word;
   hyphens: auto;
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }

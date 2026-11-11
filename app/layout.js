@@ -1,45 +1,59 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
-import Link from "next/link";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const playfair = localFont({
+  src: "../node_modules/@fontsource-variable/playfair-display/files/playfair-display-latin-wght-normal.woff2",
+  variable: "--font-playfair",
+  weight: "400 900",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const nunito = localFont({
+  src: "../node_modules/@fontsource-variable/nunito/files/nunito-latin-wght-normal.woff2",
+  variable: "--font-nunito",
+  weight: "200 1000",
+  display: "swap",
 });
+
+const siteUrl = "https://thecozycornerbylawagon.vercel.app";
 
 export const metadata = {
-  title: "The Cozy Corner",
-  description: "An online haven for manga and comic enthusiasts to discover their next favorite read.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "The Cozy Corner — Manga Recommendations",
+    template: "%s · The Cozy Corner",
+  },
+  description:
+    "An online haven for manga and comic enthusiasts to discover their next favorite read.",
+  openGraph: {
+    title: "The Cozy Corner",
+    description:
+      "An online haven for manga and comic enthusiasts to discover their next favorite read.",
+    url: siteUrl,
+    siteName: "The Cozy Corner",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-50`}
+        className={`${playfair.variable} ${nunito.variable} flex min-h-screen flex-col antialiased`}
       >
-        <header className="border-b bg-white">
-          <div className="mx-auto max-w-6xl flex justify-between items-center p-4">
-            <h1 className="text-xl font-semibold">The Cozy Corner</h1>
-            <nav className="space-x-4 text-sm">
-              <Link href="/">Home</Link>
-              <Link href="/about">About</Link>
-              <Link href="/books">Books</Link>
-              <Link href="/contact">Contact</Link>
-            </nav>
-          </div>
-        </header>
-
-        <main className="mx-auto max-w-6xl p-6">{children}</main>
-
-        <footer className="text-center text-sm text-zinc-500 py-6">
-          © 2026 The Cozy Corner
-        </footer>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-gold focus:px-4 focus:py-2 focus:font-bold focus:text-ink"
+        >
+          Skip to content
+        </a>
+        <Navbar />
+        <main id="main" className="flex-1">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

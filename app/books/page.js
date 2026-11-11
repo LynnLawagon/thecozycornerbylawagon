@@ -1,64 +1,33 @@
-import Image from "next/image";
+import BooksExplorer from "../components/BooksExplorer";
+import { books } from "../data/books";
+
+export const metadata = {
+  title: "Books",
+  description:
+    "Browse our hand-picked manga recommendations: action, romance, fantasy, slice of life and more.",
+};
 
 export default function BooksPage() {
   return (
-    <section>
-      <h2 className="text-3xl font-semibold mb-6">Manga Recommendations</h2>
-
-      <div className="grid md:grid-cols-3 gap-6">
-        <div className="bg-white p-4 rounded shadow">
-          <Image src="/images/naruto.png" alt="Book" width={350} height={400} />
-          <h3 className="mt-3 font-medium">Naruto</h3>
+    <>
+      <section className="hero-bg text-white">
+        <div className="mx-auto max-w-6xl px-5 py-14 sm:py-20">
+          <p className="fade-up text-xs font-bold uppercase tracking-[0.3em] text-gold">
+            The Library
+          </p>
+          <h1 className="fade-up mt-3 text-4xl font-bold sm:text-6xl">
+            Manga <span className="gradient-text">Recommendations</span>
+          </h1>
+          <p className="fade-up mt-4 max-w-xl text-lg text-white/80">
+            {books.length} hand-picked series, from legendary shonen to gentle
+            slice-of-life. Search or filter to find your next obsession.
+          </p>
         </div>
+      </section>
 
-        <div className="bg-white p-4 rounded shadow">
-          <Image src="/images/one piece.png" alt="Book" width={350} height={400} />
-          <h3 className="mt-3 font-medium">One Piece</h3>
-        </div>
-
-        <div className="bg-white p-4 rounded shadow">
-          <Image src="/images/bleach.png" alt="Book" width={350} height={400} />
-          <h3 className="mt-3 font-medium">Bleach</h3>
-        </div>
-      </div>
-
-      <br></br>
-
-      <div className="grid md:grid-cols-3 gap-6">
-        <div className="bg-white p-4 rounded shadow">
-          <Image src="/images/bc.png" alt="Book" width={350} height={400} />
-          <h3 className="mt-3 font-medium">Black Clover</h3>
-        </div>
-
-        <div className="bg-white p-4 rounded shadow">
-          <Image src="/images/mha.png" alt="Book" width={350} height={400} />
-          <h3 className="mt-3 font-medium">My Hero Academia</h3>
-        </div>
-
-        <div className="bg-white p-4 rounded shadow">
-          <Image src="/images/spyxfam.png" alt="Book" width={350} height={400} />
-          <h3 className="mt-3 font-medium">Spy x Family</h3>
-        </div>
-      </div>
-
-      <br></br>
-      
-      <div className="grid md:grid-cols-3 gap-6">
-        <div className="bg-white p-4 rounded shadow">
-          <Image src="/images/hunter.png" alt="Book" width={350} height={400} />
-          <h3 className="mt-3 font-medium">Hunter x Hunter</h3>
-        </div>
-
-        <div className="bg-white p-4 rounded shadow">
-          <Image src="/images/aot.png" alt="Book" width={350} height={400} />
-          <h3 className="mt-3 font-medium">Attack on Titan</h3>
-        </div>
-
-        <div className="bg-white p-4 rounded shadow">
-          <Image src="/images/wotakoi.png" alt="Book" width={350} height={400} />
-          <h3 className="mt-3 font-medium">Wotakoi: Love is Hard for Otaku</h3>
-        </div>
-      </div>
-    </section>
+      <section className="mx-auto -mt-8 max-w-6xl px-5 pb-20">
+        <BooksExplorer />
+      </section>
+    </>
   );
 }
